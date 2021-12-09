@@ -6,7 +6,7 @@
     "clean": "rimraf .cache && rimraf coverage && rimraf dist && rimraf node_modules",
     "prebuild": "rimraf dist",
     "build": "parcel build index.html --public-url ./",
-    "format": "prettier --write \"src/**/*.js\" \"src/**/*.ts\" \"test/**/*.js\" \"test/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.js\" \"src/**/*.ts\" \"test/**/*.js\" \"test/**/*.ts\" \"src/**/*.scss\"",
     "start:dev": "parcel index.html",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -30,6 +30,7 @@
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.11.5",
+    "@parcel/transformer-sass": "^2.0.1",
     "@testing-library/dom": "^8.11.1",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/user-event": "^13.5.0",
