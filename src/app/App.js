@@ -1,1 +1,3 @@
-export const App = ({ options }) => {};
+export const App = ({ options: { rootNodeId } }) => {
+  const rootNode = document.getElementById(rootNodeId);
+};

@@ -1,0 +1,11 @@
+@use '../../themes/theme.scss';
+
+.portrait {
+  display: flex;
+  flex: 1;
+  box-shadow: theme.$red-box-shadow;
+  border-radius: 16px;
+  min-height: 100px;
+  background-size: cover;
+  background-position: center;
+}
