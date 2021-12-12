@@ -1,10 +1,10 @@
-@use '../../themes/theme.scss';
+@use '../../themes/theme.scss' as *;
 
 .portrait {
   display: flex;
   flex: 1;
-  box-shadow: theme.$red-box-shadow;
-  border-radius: 16px;
+  box-shadow: $red-box-shadow;
+  border-radius: $border-radius;
   min-height: 100px;
   background-size: cover;
   background-position: center;
