@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
-    "@babel/preset-env": "^7.11.5",
     "@parcel/babel-preset-env": "^2.0.1",
     "@parcel/transformer-sass": "^2.0.1",
     "@testing-library/dom": "^8.11.1",
