@@ -1,11 +1,10 @@
 @use '../../themes/theme.scss' as *;
 
 #mainMenu {
-  height: 8rem;
   display: flex;
-  align-items: center;
   justify-content: space-around;
-  flex-direction: row;
+  align-items: center;
+  height: 8rem;
   box-shadow: $red-box-shadow;
   border-radius: $border-radius;
 }
@@ -14,13 +13,8 @@ div .active {
   color: #202020;
   &::after {
     content: '';
-    bottom: -8px;
-    position: absolute;
-    height: 0.5rem;
     width: 100%;
     border-radius: 4px;
-    z-index: 2;
-    display: block;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
       4px 4px 40px rgba(255, 0, 0, 0.9);
     background-color: #df4b4b;
@@ -28,22 +22,25 @@ div .active {
 }
 
 .options {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
   position: relative;
   color: #979797;
   font-size: 2em;
   font-weight: bold;
   transition: all 0.3s ease-in-out;
+  user-select: none;
   &:hover {
     color: $red-color;
+    cursor: pointer;
   }
   &::after {
     content: '';
-    left: 0;
     position: absolute;
+    bottom: -8px;
+    left: 0;
+    z-index: 2;
+    display: block;
     width: 0;
+    height: 0.5rem;
     background-color: #fe6666;
     transition: all 0.5s ease-in-out;
   }
