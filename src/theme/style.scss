@@ -1,0 +1,31 @@
+@use './theme' as *;
+
+.test {
+  padding: spacing(4);
+  background-color: color(red600);
+  height: 400px;
+  width: 400px;
+
+  @include screen(sm) {
+    background-color: color(red200);
+  }
+}
+
+body {
+  @each $key, $value in $light-theme {
+    --color-#{$key}: #{derive-rgb-values-from-hex($value)};
+  }
+
+  font-family: Montserrat, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+@each $theme-name, $theme in $themes {
+  body[data-theme='#{$theme-name}'] {
+    @each $key, $value in $theme {
+      --color-#{$key}: #{derive-rgb-values-from-hex($value)};
+    }
+  }
+}
