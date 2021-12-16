@@ -7,7 +7,7 @@
     "prebuild": "rimraf dist",
     "build": "parcel build index.html --public-url ./",
     "format": "prettier --write \"src/**/*.js\" \"src/**/*.ts\" \"test/**/*.js\" \"test/**/*.ts\" \"src/**/*.scss\"",
-    "start:dev": "parcel index.html",
+    "start:dev": "parcel --no-cache index.html",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage"
@@ -30,6 +30,7 @@
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.11.5",
+    "@parcel/babel-preset-env": "^2.0.1",
     "@parcel/transformer-sass": "^2.0.1",
     "@testing-library/dom": "^8.11.1",
     "@testing-library/jest-dom": "^5.11.6",

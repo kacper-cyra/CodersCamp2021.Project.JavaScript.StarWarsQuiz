@@ -47,4 +47,5 @@ class MainMenu extends HTMLElement {
   }
 }
 
-customElements.define(MAIN_MENU_COMPONENT_NAME, MainMenu);
+customElements.get(MAIN_MENU_COMPONENT_NAME) ||
+  customElements.define(MAIN_MENU_COMPONENT_NAME, MainMenu);
