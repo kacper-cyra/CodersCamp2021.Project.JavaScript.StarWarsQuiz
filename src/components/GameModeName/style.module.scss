@@ -1,0 +1,12 @@
+@use '../../themes/theme.scss' as *;
+
+.gameModeTitle{
+    display: flex;
+    height: 4rem;
+    align-items: center;
+    justify-content: center;
+    box-shadow: $red-box-shadow;
+    border-radius: $border-radius;
+
+}
+
