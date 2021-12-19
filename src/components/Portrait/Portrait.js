@@ -21,7 +21,7 @@ class Portrait extends HTMLElement {
 
   static imageContainerBuilder() {
     const imageContainer = document.createElement('div');
-    imageContainer.className = classes.imageContainer;
+    imageContainer.className = classes.portrait;
 
     return imageContainer;
   }
