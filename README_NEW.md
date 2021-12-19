@@ -11,4 +11,3 @@ Parcel in v2 has a [bug](https://github.com/parcel-bundler/parcel/issues/5965) w
 ## Useful resources
 
 - [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements),
-- [Star Wars API](https://swapi.py4e.com/documentation),
