@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/CodersCamp2020/CodersCamp2020.Project.JavaScript.StarWarsQuiz#readme",
   "dependencies": {
+    "axios": "^0.24.0",
     "regenerator-runtime": "^0.13.7",
     "uuid": "^8.3.0"
   },
@@ -40,7 +41,7 @@
     "jest-fetch-mock": "^3.0.3",
     "msw": "^0.36.0",
     "parcel": "^2.0.1",
-    "parcel-plugin-static-files-copy": "^2.5.0",
+    "parcel-reporter-static-files-copy": "^1.3.4",
     "prettier": "^2.1.2",
     "rimraf": "^3.0.2"
   },
@@ -60,11 +61,7 @@
     ]
   },
   "staticFiles": {
-    "staticPath": [
-      {
-        "staticPath": "static",
-        "staticOutDir": "static"
-      }
-    ]
+    "staticPath": "static",
+    "distDir": "./dist/static"
   }
 }
