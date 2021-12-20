@@ -1,3 +1,5 @@
+import * as classes from './style.module.scss';
+
 const HallOfFameButton = document.createElement('button')
 const Icon = document.createElement('img')
 HallOfFameButton.textContent = "hall of fame"
