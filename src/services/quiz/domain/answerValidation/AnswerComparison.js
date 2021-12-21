@@ -1,3 +1,3 @@
 function isAnswerCorrect(correctAnswer, playerAnswer) {
-  return playerAnswer == correctAnswer;
+  return playerAnswer === correctAnswer;
 }
