@@ -7,31 +7,25 @@ class Logo extends HTMLElement {
     super();
     this._contents = new DocumentFragment();
 
-    this.imageContainer = Logo.imageContainerBuilder();
+    this.logo = Logo.logoBuilder();
 
-    this._contents.appendChild(this.imageContainer);
+    this._contents.appendChild(this.logo);
   }
 
   connectedCallback() {
-    this.imageContainer.style.backgroundImage = `url(${this.getAttribute(
-      'data-image-url',
-    )})`;
     this.appendChild(this._contents);
   }
 
-  static imageContainerBuilder() {
-    const imageContainer = document.createElement('div');
-    imageContainer.className = classes.imageContainer;
+  static logoBuilder() { 
+    const imgAnchor = document.createElement('a');
+    imgAnchor.href = 'index.html';    
 
-    const imageAnchor = document.createElement('a');
-    imageAnchor.href = 'index.html';
-    imageContainer.appendChild(imageAnchor);
+    const logo = document.createElement('img');
+    logo.className = classes.logo;
+    logo.src = 'static/assets/ui/StarWarsLogo.png';
+    imgAnchor.appendChild(logo);
 
-    const imgTag = document.createElement('img');
-    imgTag.src = 'static/assets/ui/StarWarsLogo.png';
-    imageAnchor.appendChild(imageAnchor);
-
-    return imageContainer;
+    return imgAnchor;
   }
 }
 
