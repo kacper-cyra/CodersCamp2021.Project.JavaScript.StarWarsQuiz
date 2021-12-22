@@ -1,4 +1,4 @@
-export const LocalStorageScores = ({ gameMode }) => {
+export const localStorageScores = ({ gameMode }) => {
   return {
     saveScore({ playerName, score }) {
       const save = { playerName, score };
