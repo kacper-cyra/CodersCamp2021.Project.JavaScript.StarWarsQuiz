@@ -1,0 +1,212 @@
+@use '../constants' as *;
+
+$static-breakpoint: desktop !default;
+
+$responsive: desktop !default;
+
+/// Show breakpoints in the top right corner
+$show-breakpoints: () !default;
+
+$media-type: all !default;
+
+@function get-breakpoint-width($name, $breakpoints: $breakpoints) {
+  @if map-has-key($breakpoints, $name) {
+    @return map-get($breakpoints, $name) * 1px;
+  } @else {
+    @warn "Breakpoint #{$name} wasn't found in $breakpoints.";
+  }
+}
+
+/// @example scss
+///  .element {
+///    @include screen($from: mobile) {
+///      color: red;
+///    }
+///    @include screen($to: tablet) {
+///      color: blue;
+///    }
+///    @include screen(mobile, tablet) {
+///      color: green;
+///    }
+///    @include screen($from: tablet, $and: '(orientation: landscape)') {
+///      color: teal;
+///    }
+///    @include screen(950px) {
+///      color: hotpink;
+///    }
+///    @include screen(tablet, $media-type: screen) {
+///      color: hotpink;
+///    }
+///    // Advanced use:
+///    $my-breakpoints: (L: 900px, XL: 1200px);
+///    @include screen(L, $breakpoints: $my-breakpoints, $static-breakpoint: L) {
+///      color: hotpink;
+///    }
+///  }
+@mixin screen(
+  $from: false,
+  $to: false,
+  $and: false,
+  $media-type: $media-type,
+  $breakpoints: $breakpoints,
+  $responsive: $responsive,
+  $static-breakpoint: $static-breakpoint
+) {
+  $min-width: 0;
+  $max-width: 0;
+  $media-query: '';
+
+  // From: this breakpoint (inclusive)
+  @if $from {
+    @if type-of($from) == number {
+      $min-width: $from * 1px;
+    } @else {
+      $min-width: get-breakpoint-width($from, $breakpoints);
+    }
+  }
+
+  // Until: that breakpoint (exclusive)
+  @if $to {
+    @if type-of($to) == number {
+      $max-width: $to * 1px;
+    } @else {
+      $max-width: get-breakpoint-width($to, $breakpoints) - 1;
+    }
+  }
+
+  // Responsive support is disabled, rasterize the output outside @media blocks
+  // The browser will rely on the cascade itself.
+  @if $responsive == false {
+    $static-breakpoint-width: get-breakpoint-width(
+      $static-breakpoint,
+      $breakpoints
+    );
+    $target-width: $static-breakpoint-width;
+
+    // Output only rules that start at or span our target width
+    @if (
+      $and ==
+        false and
+        $min-width <=
+        $target-width and
+        ($to == false or $max-width >= $target-width) and
+        $media-type !=
+        'print'
+    ) {
+      @content;
+    }
+  }
+
+  // Responsive support is enabled, output rules inside @media queries
+  @else {
+    @if $min-width != 0 {
+      $media-query: '#{$media-query} and (min-width: #{$min-width})';
+    }
+    @if $max-width != 0 {
+      $media-query: '#{$media-query} and (max-width: #{$max-width})';
+    }
+    @if $and {
+      $media-query: '#{$media-query} and #{$and}';
+    }
+
+    // Remove unnecessary media query prefix 'all and '
+    @if ($media-type == 'all' and $media-query != '') {
+      $media-type: '';
+      $media-query: str-slice(unquote($media-query), 6);
+    }
+
+    @media #{$media-type + $media-query} {
+      & {
+        @content;
+      }
+    }
+  }
+}
+
+@function _quick-sort($list) {
+  $less: ();
+  $equal: ();
+  $large: ();
+
+  @if length($list) > 1 {
+    $seed: nth($list, ceil(length($list) / 2));
+
+    @each $item in $list {
+      @if ($item == $seed) {
+        $equal: append($equal, $item);
+      } @else if ($item < $seed) {
+        $less: append($less, $item);
+      } @else if ($item > $seed) {
+        $large: append($large, $item);
+      }
+    }
+
+    @return join(join(_quick-sort($less), $equal), _quick-sort($large));
+  }
+
+  @return $list;
+}
+
+/// Sort a map by values (works with numbers only)
+@function _map-sort-by-value($map) {
+  $map-sorted: ();
+  $map-keys: map-keys($map);
+  $map-values: map-values($map);
+  $map-values-sorted: _quick-sort($map-values);
+
+  // Reorder key/value pairs based on key values
+  @each $value in $map-values-sorted {
+    $index: index($map-values, $value);
+    $key: nth($map-keys, $index);
+    $map-sorted: map-merge(
+      $map-sorted,
+      (
+        $key: $value,
+      )
+    );
+
+    // Unset the value in $map-values to prevent the loop
+    // from finding the same index twice
+    $map-values: set-nth($map-values, $index, 0);
+  }
+
+  @return $map-sorted;
+}
+
+@mixin add-breakpoint($name, $width) {
+  $new-breakpoint: (
+    $name: $width,
+  );
+  $breakpoints: map-merge($breakpoints, $new-breakpoint) !global;
+  $breakpoints: _map-sort-by-value($breakpoints) !global;
+}
+
+@mixin show-breakpoints(
+  $show-breakpoints: $show-breakpoints,
+  $breakpoints: $breakpoints
+) {
+  background-color: #fcf8e3;
+  border-bottom: 1px solid #fbeed5;
+  border-left: 1px solid #fbeed5;
+  color: #c09853;
+  font: small-caption;
+  padding: 3px 6px;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+
+  // Loop through the breakpoints that should be shown
+  @each $show-breakpoint in $show-breakpoints {
+    $width: get-breakpoint-width($show-breakpoint, $breakpoints);
+
+    @include screen($show-breakpoint, $breakpoints: $breakpoints) {
+      content: '#{$show-breakpoint} ≥ #{$width} (#{$width})';
+    }
+  }
+}
+
+@if length($show-breakpoints) > 0 {
+  @include show-breakpoints;
+}

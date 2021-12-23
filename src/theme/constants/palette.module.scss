@@ -1,0 +1,23 @@
+$light-theme: (
+  primary: #02001e,
+  background: #c4c4c4,
+  red100: #fee2e2,
+  red200: #fecaca,
+  red300: #fca5a5,
+  red400: #f87171,
+  red500: #ef4444,
+  red600: #dc2626,
+  red700: #b91c1c,
+  red800: #991b1b,
+  red900: #7f1d1d,
+);
+
+$dark-theme: (
+  primary: #ffffff,
+  background: #06001e,
+);
+
+$themes: (
+  light: $light-theme,
+  dark: $dark-theme,
+);
