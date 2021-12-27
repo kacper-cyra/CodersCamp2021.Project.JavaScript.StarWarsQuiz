@@ -20,7 +20,11 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-}
+  min-height: 100vh;
+  background-image: url('/static/assets/ui/QuizBackground.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 
 @each $theme-name, $theme in $themes {
   body[data-theme='#{$theme-name}'] {
