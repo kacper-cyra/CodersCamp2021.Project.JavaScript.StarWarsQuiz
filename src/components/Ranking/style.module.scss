@@ -1,0 +1,38 @@
+@use '../../theme/theme.scss' as *;
+
+body {
+  background: #22272e;
+}
+
+#RankingContainer {
+  background-color: #fefefe;
+  border-radius: $border-radius;
+  max-width: 100%;
+  margin: 2rem;
+  font-weight: 500;
+  padding: 1rem;
+}
+
+#RankingTitle {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  &::before {
+    content: '';
+    background-image: url('../../../static/assets/ui/Contacts.png');
+    background-size: cover;
+    width: 2rem;
+    height: 2rem;
+    margin: auto 15px auto 0;
+  }
+}
+
+#RankingList {
+  margin: 2rem 0 2rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  font-size: 1.4rem;
+  & div:nth-child(-n + 3) {
+    font-weight: bold;
+  }
+}
