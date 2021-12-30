@@ -48,7 +48,8 @@ class Ranking extends HTMLElement {
       { place: '2nd' },
       { place: '3rd' },
     ].reduce((acc, item, index) => {
-      return [...acc, { ...item, ...playerScores[index] }];
+      acc.push({ ...item, ...playerScores[index] });
+      return acc;
     }, []);
 
     playerRanking.unshift({
