@@ -6,6 +6,14 @@ class Ranking extends HTMLElement {
   constructor() {
     super();
 
+    let arr = [
+      { playerName: 'Kacper', score: '11/21' },
+      { playerName: 'Szymon', score: '16/37' },
+      { playerName: 'Piotr Zając', score: '4/35' },
+    ];
+
+    this.playerScores = this.playerScores ? this.playerScores : arr;
+
     this._contents = new DocumentFragment();
 
     this.container = Ranking.addContainer();
@@ -25,6 +33,11 @@ class Ranking extends HTMLElement {
 
   setUserScores(playerScores) {
     this.playerScores = playerScores;
+
+    this.container.removeChild(this.rankingList);
+
+    this.rankingList = Ranking.createRankingList(this.playerScores);
+    this.container.appendChild(this.rankingList);
   }
 
   static addContainer() {
