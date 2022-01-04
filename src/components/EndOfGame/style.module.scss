@@ -1,0 +1,109 @@
+@use '../../theme/theme.scss' as *;
+
+.gameOverWin {
+  box-sizing: border-box;
+  background: inherit;
+  text-align: center;
+  padding: 1em;
+  font-weight: 500;
+  border-radius: $border-radius;
+
+  h2 {
+    font-size: 40px;
+    margin: 0;
+  }
+  h3 {
+    margin: 0;
+    grid-area: title;
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+
+.gameOverWin > div {
+  position: relative;
+  text-align: left;
+  display: grid;
+  grid-template-areas:
+    'title  title           title               title'
+    'yoda   scrollable-list scrollable-list     scrollable-list'
+    'input  input           input-description   input-description';
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.scrollableList {
+  grid-area: scrollable-list;
+  align-items: center;
+  margin: 0.5rem 0;
+  padding: 0 1em;
+
+  .correct {
+    color: green;
+  }
+  .wrong {
+    color: red;
+  }
+
+  img {
+    height: 80px;
+  }
+}
+.gameOverWin ul {
+  margin-top: 1em;
+  max-height: 400px;
+  overflow-y: scroll;
+  list-style-type: none;
+}
+.gameOverWin li {
+  margin: 1.3em 0;
+  padding: 0 1em;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.gameOverWin ul > li:first-child {
+  margin-top: 0;
+  color: #444;
+}
+.gameOverWin ul > li > img {
+  border-radius: $border-radius;
+  box-shadow: $red-box-shadow;
+}
+
+.yoda {
+  position: relative;
+  bottom: 2px;
+  grid-area: yoda;
+  height: 300px;
+  align-self: flex-end;
+  z-index: 1;
+}
+
+.gameOverWin > div > input {
+  grid-area: input;
+  border-radius: 0.5rem;
+  border: #444 solid 2px;
+  padding: 0.5em 1em;
+  font-size: inherit;
+}
+
+.gameOverWin > div > p {
+  grid-area: input-description;
+}
+
+.submitBtn {
+  margin: 0.5em;
+  padding: 0.5em;
+  border: red solid 1px;
+  // border-bottom: gray solid 2px;
+  border-radius: $border-radius;
+  background-color: red;
+  color: white;
+  font-size: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), $red-box-shadow;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}
