@@ -1,0 +1,8 @@
+@use '../../theme/theme.scss' as *;
+
+.timer {
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  color: rgba(255,0,0,0.5);
+}
