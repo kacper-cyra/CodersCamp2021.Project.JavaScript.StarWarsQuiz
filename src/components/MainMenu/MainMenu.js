@@ -20,6 +20,7 @@ class MainMenu extends HTMLElement {
     });
 
     this._contents.appendChild(this.nav);
+    this._contents.id = classes.mainMenuComponent;
   }
 
   connectedCallback() {
