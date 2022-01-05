@@ -11,12 +11,9 @@
   font-family: 'Montserrat';
   font-size: 42px;
   text-align: center;
-  &::before {
-    content: '';
-    background-image: url('../../../static/assets/ui/ModeRules.png');
-    background-size: cover;
-    width: 2rem;
-    height: 2rem;
-    margin: auto 15px auto 0;
-  }
+}
+
+.icon {
+  position: absolute;
+  left: 10px;
 }
