@@ -1,0 +1,25 @@
+.answer {
+  height: 100px;
+  width: 575px;
+  border-radius: 16px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  background-color: #fff;
+
+  &:hover {
+    box-shadow: 0px 4px 4px 0px #00000040 inset, 0px 4px 4px 0px #00000040;
+  }
+
+  &.selected {
+    font-weight: 600;
+  }
+
+  &.sucess {
+    background-color: #41ed25;
+    box-shadow: 0px 4px 30px 0px #51fc00, 0px 4px 4px 0px #00000040;
+  }
+
+  &.failure {
+    background-color: #ff0000;
+    box-shadow: 0px 4px 30px 0px #ff0000, 0px 4px 4px 0px #00000040;
+  }
+}

@@ -6,6 +6,10 @@ import { LOGO_COMPONENT_NAME } from '../Logo/StarWarsLogo.js';
 import { PORTRAIT_COMPONENT_NAME } from '../Portrait/Portrait';
 import { MODE_RULES_COMPONENT_NAME } from '../ModeRules/ModeRules.js';
 
+import { GAME_MODE_COMPONENT_NAME } from '../GameModeName/GameModeName.js';
+
+import { HALL_OF_FAME_BUTTON_COMPONENT_NAME } from '../HallOfFameButton/HallOfFameButton';
+
 export const GAME_CONTAINER_COMPONENT_NAME = 'game-container-component';
 
 class GameContainer extends HTMLElement {
@@ -30,8 +34,16 @@ class GameContainer extends HTMLElement {
     );
     this.middleBar.appendChild(this.portrait);
 
-    // this.modeRules = document.createElement(MODE_RULES_COMPONENT_NAME);
-    // this.middleBar.appendChild(this.modeRules);
+    this.gameMode = document.createElement(GAME_MODE_COMPONENT_NAME);
+    this.middleBar.appendChild(this.gameMode);
+
+    this.modeRules = document.createElement(MODE_RULES_COMPONENT_NAME);
+    this.middleBar.appendChild(this.modeRules);
+
+    // this.BttnHallOfFame = document.createElement(
+    //   HALL_OF_FAME_BUTTON_COMPONENT_NAME,
+    // );
+    // this.middleBar.appendChild(this.BttnHallOfFame);
 
     this._contents.appendChild(this.topBar);
     this._contents.appendChild(this.middleBar);
