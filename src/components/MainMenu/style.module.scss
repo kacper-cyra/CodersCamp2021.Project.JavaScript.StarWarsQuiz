@@ -1,12 +1,19 @@
-@use '../../themes/theme.scss' as *;
+@use '../../theme/theme.scss' as *;
+
+#mainMenuComponent {
+  width: 100%;
+}
 
 #mainMenu {
+  background-color: #fefefe;
   display: flex;
   justify-content: space-around;
   align-items: center;
   height: 8rem;
+  max-width: 100%;
   box-shadow: $red-box-shadow;
   border-radius: $border-radius;
+  margin: 0 20px;
 }
 
 div .active {
